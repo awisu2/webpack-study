@@ -37,10 +37,9 @@ module.exports = (env, options) => {
     module: {
     },
     plugins: [
-      //
-      new HtmlWebpackPlugin([
-        { template: "src/index.html" }
-      ])
+      new HtmlWebpackPlugin({
+        template: "src/index.html"
+      })
     ]
   }
 }

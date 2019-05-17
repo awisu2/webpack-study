@@ -1,3 +1,12 @@
+# typescript
+
+```bash
+yarn add -D typescript ts-loader
+```
+
+webpack.config
+
+```js
 const path = require('path')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -22,7 +31,7 @@ module.exports = (env, options) => {
       app: './src/js/app.ts'
     },
     output: {
-      path: path.join(__dirname, 'dist/'),
+      path: joinPath('dist/'),
       filename: 'js/[name]' + (isProd ? '.[hash]' : '') + '.js'
     },
     module: {
@@ -84,4 +93,4 @@ module.exports = (env, options) => {
     ]
   }
 }
-
+```
