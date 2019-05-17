@@ -4,6 +4,23 @@
 yarn add -D typescript ts-loader
 ```
 
+tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "lib": [
+      "es2019",
+      "dom"
+    ]
+  }
+}
+```
+
 webpack.config
 
 ```js

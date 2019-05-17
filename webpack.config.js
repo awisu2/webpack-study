@@ -19,7 +19,7 @@ module.exports = (env, options) => {
     name: 'app',
     mode: isProd ? MODE_PRODUCTION : MODE_DEVELOPMENT,
     entry: {
-      app: './src/js/app.ts'
+      app: './src/js/app.js'
     },
     output: {
       path: path.join(__dirname, 'dist/'),
@@ -28,12 +28,13 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
+          test: /\.js$/,
+          loader: "babel-loader",
+          exclude: /node_modules/
+        },
+        {
           test: /\.tsx?$/,
-          use: [
-            {
-              loader: "ts-loader"
-            }
-          ],
+          loader: "ts-loader",
           exclude: /node_modules/
         },
         {
