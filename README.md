@@ -1,5 +1,12 @@
 # webpack first study
 
+- デフォルトではjavascriptのコンパイラ
+  - loaderを追加することによってその他の形式にも対応可能
+- *webpack.config.js* を起点に動作
+- public site: [webpack](https://webpack.js.org/)
+- [webpack.config.js](./docs/config/config.md): webpack用の設定ファイル。webpackはこのファイルによって動作
+- [samples](./docs/sample/sample.md): 実験とその結果
+
 ## get start
 
 ### 1. setup
@@ -10,17 +17,18 @@ yarn add -D webpack webpack-cli
 yarn webpack -v
 ```
 
-+ パッケージ不足でエラーが出るようであれば最新化 `npm -g install npm`
-+ ローカルインストールしたnode_moduleを直接利用したい場合はPATHを修正 `export PATH=$PATH:./node_modules/.bin`
-  + `yarn` を省略可能
+- パッケージ不足でエラーが出るようであれば最新化 `npm -g install npm`
+- ローカルインストールしたnode_moduleを直接利用したい場合はPATHを修正 `export PATH=$PATH:./node_modules/.bin`
+  - `yarn` を省略可能
 
 ### 2. small run
 
 #### create file
 
+webpack.config.js
+
 ```js
-// webpack.config.js
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   mode: 'development',
@@ -29,11 +37,12 @@ module.exports = {
     filename: 'app.js',
     path: path.join(__dirname, 'dist/js')
   }
-};
+}
 ```
 
+src/js/app.js
+
 ```js
-// src/js/app.js
 console.log('hello world')
 ```
 
