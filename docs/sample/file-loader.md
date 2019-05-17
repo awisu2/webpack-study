@@ -5,6 +5,7 @@
 ## setup
 
 ```bash
+yarn add -D file-loader
 ```
 
 ## sample: 画像を変換せずそのままファイルとして出力
