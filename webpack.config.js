@@ -122,6 +122,45 @@ module.exports = (env, options) => {
         }),
         new VueLoaderPlugin()
       ]
+    },
+    {
+      name: 'vueTs',
+      mode: isProd ? MODE_PRODUCTION : MODE_DEVELOPMENT,
+      entry: {
+        vueTs: joinPath('src', 'js', 'vueTs.ts')
+      },
+      output: {
+        path: joinPath('dist/'),
+        filename: 'js/[name]' + (isProd ? '.[hash]' : '') + '.js'
+      },
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            loader: "ts-loader",
+            exclude: /node_modules/,
+            options: {
+              appendTsSuffixTo: [/\.vue$/]
+            }
+          },
+          {
+            test: /\.vue$/,
+            loader: "vue-loader"
+          }
+        ]
+      },
+      resolve: {
+        alias: {
+          'vue$': 'vue/dist/vue.esm.js'
+        }
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: joinPath('src', 'vueTs.html'),
+          filename: 'vueTs.html'
+        }),
+        new VueLoaderPlugin()
+      ]
     }
   ]
 }

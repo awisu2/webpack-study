@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
     "target": "es5",
     "module": "es2015",
-    "struct": true,
     "moduleResolution": "node",
     "lib": [
       "esnext",
       "dom"
-    ]
+    ],
+    // 公文チェック
+    "strict": true,
+    // デコレータ有効
+    "experimentalDecorators": true
   }
 }

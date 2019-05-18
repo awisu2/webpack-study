@@ -51,3 +51,69 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
     }
     ...
 ```
+
+## typescriptで動かす
+
+tsconfig.json
+
+```json
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    // 公文チェック
+    "strict": true,
+    // デコレータ有効
+    "experimentalDecorators": true
+  }
+}
+```
+
+webpack.config.js
+
+```js
+    {
+      name: 'vueTs',
+      mode: isProd ? MODE_PRODUCTION : MODE_DEVELOPMENT,
+      entry: {
+        vueTs: joinPath('src', 'js', 'vueTs.ts')
+      },
+      output: {
+        path: joinPath('dist/'),
+        filename: 'js/[name]' + (isProd ? '.[hash]' : '') + '.js'
+      },
+      module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            loader: "ts-loader",
+            exclude: /node_modules/,
+            options: {
+              appendTsSuffixTo: [/\.vue$/]
+            }
+          },
+          {
+            test: /\.vue$/,
+            loader: "vue-loader"
+          }
+        ]
+      },
+      resolve: {
+        alias: {
+          'vue$': 'vue/dist/vue.esm.js'
+        }
+      },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: joinPath('src', 'vueTs.html'),
+          filename: 'vueTs.html'
+        }),
+        new VueLoaderPlugin()
+      ]
+    }
+```
