@@ -3,9 +3,10 @@
     "sourceMap": true,
     "target": "es5",
     "module": "es2015",
+    "struct": true,
     "moduleResolution": "node",
     "lib": [
-      "es2019",
+      "esnext",
       "dom"
     ]
   }
