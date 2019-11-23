@@ -11,9 +11,7 @@
 - [webpack.config.js](./docs/config/config.md): webpack用の設定ファイル。webpackはこのファイルによって動作
 - [samples](./docs/sample/sample.md): 実験とその結果
 
-## get start
-
-### 1. setup
+## setup
 
 ```bash
 yarn init -y
@@ -21,48 +19,10 @@ yarn add -D webpack webpack-cli
 yarn webpack -v
 ```
 
-- パッケージ不足でエラーが出るようであれば最新化 `npm -g install npm`
-- ローカルインストールしたnode_moduleを直接利用したい場合はPATHを修正 `export PATH=$PATH:./node_modules/.bin`
-  - `yarn` を省略可能
+## how to try
 
-### 2. small run
+use directories
 
-#### create file
-
-webpack.config.js
-
-```js
-const path = require('path')
-
-module.exports = {
-  mode: 'development',
-  entry: './src/js/app.js',
-  output: {
-    filename: 'app.js',
-    path: path.join(__dirname, 'dist/js')
-  }
-}
-```
-
-src/js/app.js
-
-```js
-console.log('hello world')
-```
-
-#### run
-
-```bash
-yarn webpack
-node dist/js/app.js
-```
-
-## full set up
-
-グローバルインストールは避ける方向で
-
-```bash
-yarn init
-yarn add -D webpack webpack-cli
-yarn webpack --version
-```
+- tutorial
+- copyhtml
+- loadTypescript
