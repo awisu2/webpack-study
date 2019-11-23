@@ -1,9 +1,13 @@
 # webpack first study
 
+[webpack](https://webpack.js.org/)
+
 - デフォルトではjavascriptのコンパイラ
   - loaderを追加することによってその他の形式にも対応可能
 - *webpack.config.js* を起点に動作
-- public site: [webpack](https://webpack.js.org/)
+
+## links
+
 - [webpack.config.js](./docs/config/config.md): webpack用の設定ファイル。webpackはこのファイルによって動作
 - [samples](./docs/sample/sample.md): 実験とその結果
 
@@ -51,4 +55,14 @@ console.log('hello world')
 ```bash
 yarn webpack
 node dist/js/app.js
+```
+
+## full set up
+
+グローバルインストールは避ける方向で
+
+```bash
+yarn init
+yarn add -D webpack webpack-cli
+yarn webpack --version
 ```
