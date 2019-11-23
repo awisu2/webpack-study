@@ -5,8 +5,15 @@ loaderを追加しtypescriptのロードを行う
 [ts\-loader](https://github.com/TypeStrong/ts-loader)
 
 ```bash
+# webpack and important
 yarn add -D webpack webpack-cli html-webpack-plugin copy-webpack-plugin [--no-bin-links]
-yarn add -D typescript ts-loader [--no-bin-links]
+
+# typescript
+yarn add -D typescript ts-loader dotenv [--no-bin-links]
+
+# sass
+yarn add -D sass-loader node-sass style-loader css-loader [--no-bin-links]
+yarn add -D mini-css-extract-plugin optimize-css-assets-webpack-plugin [--no-bin-links]
 ```
 
 ## 発生したエラー

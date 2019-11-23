@@ -1,11 +1,23 @@
 const path = require('path');
+const dotenv = require('dotenv')
 
 // filecopy
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// css
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+// get env
+dotenv.config()
+const MODE = process.env.MODE || 'development'
+
+// echo infomation
+console.log('env', MODE, process.env)
+
 module.exports = {
-  mode: 'development',
+  mode: MODE,
   entry: './src/index.ts',
   module: {
     rules: [
@@ -14,6 +26,14 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' },
+        ],
+      }
     ],
   },
   resolve: {
@@ -30,5 +50,11 @@ module.exports = {
       // assetsディレクトリーをコピー
       { context: 'src', from: 'assets/**/*', to: '' },
     ]),
-  ]
+    // css
+    new MiniCssExtractPlugin({ filename: 'style/[name].css' })
+  ],
+  optimization: {
+    // css minimize
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
+  }
 };
