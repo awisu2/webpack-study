@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es5", // トランスパイル後のバージョン
+    "module": "commonjs", // コード生成モジュール(default: commonjs)
+    "moduleResolution": "node", // モジュールパスの解決方法(nodeとclassicのどちらかで、classicは後方互換用なのでnodeでok)
+    "noImplicitAny": true, // 型の暗黙的なany変換の有無
+    "strict": true
+  }
+}
