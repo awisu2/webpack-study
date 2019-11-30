@@ -1,10 +1,14 @@
 import './style/index.scss'
-import {Bar} from './libs/bar'
 import Vue from 'vue'
-
-Bar.hello()
+import TsComp from './components/TsComp.vue'
 
 new Vue({
   el: 'app',
-  template: "<div>hogehoge</div>",
+  components: {
+    TsComp,
+  },
+  template: `<div>
+  <TsComp/>
+  <TsComp num="99"/>
+  </div>`,
 })

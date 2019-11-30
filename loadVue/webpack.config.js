@@ -19,7 +19,7 @@ const MODE = process.env.MODE || 'development'
 // echo infomation
 module.exports = {
   mode: MODE,
-  entry: './src/index.ts',
+  entry: './src/index.js', // or index.ts
   module: {
     rules: [
       {
@@ -30,25 +30,37 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        // optionsを使うため、useでなくてloader
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          // typescriptにvueを処理させる
+          appendTsSuffixTo: [/\.vue$/]
+        }
+      },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.s?css$/,
+        test: /\.(css|sass|scss)$/,
         use: [
-          { loader: MiniCssExtractPlugin.loader },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
       }
     ],
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    // 自動補完する拡張子
+    extensions: [ '.ts', '.tsx', '.js', '.vue' ],
     // for vue
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     },
+    modules: ["node_modules"]
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -56,13 +68,14 @@ module.exports = {
   },
   plugins: [
     // ビルド後のスクリプトロードを含むhtmlコピー
-    new HtmlWebpackPlugin({ template: 'src/index.ejs', filename: 'index.html' }),
+    new HtmlWebpackPlugin({ template: 'src/templates/index.ejs', filename: 'index.html' }),
     new CopyPlugin([
       // assetsディレクトリーをコピー
       { context: 'src', from: 'assets/**/*', to: '' },
     ]),
     // css
     new MiniCssExtractPlugin({ filename: 'style/[name].css' }),
+    // vue
     new VueLoaderPlugin()
   ],
   optimization: {
