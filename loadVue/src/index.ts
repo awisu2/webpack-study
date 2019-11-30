@@ -9,6 +9,6 @@ new Vue({
   },
   template: `<div>
   <TsComp/>
-  <TsComp num="99"/>
+  <TsComp :num="99"/>
   </div>`,
 })

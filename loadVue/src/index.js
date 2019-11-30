@@ -1,4 +1,4 @@
-import './style/index.scss'
+import './styles/index.scss'
 import Vue from 'vue'
 import JsComp from './components/JsComp'
 import TsComp from './components/TsComp'
